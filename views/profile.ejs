@@ -19,9 +19,15 @@
         </div>
         <div id="lower-bg">
           <div class="text">
-            <p class="name">username</p>
-            <p class="tagline">some tagline</p>
-            <p class="description">some description</p>
+            <h2 class="name"><%= user.fullName %></h2>
+            <h3 class="name"><%=user.username %></h3>
+            <p class="tagline">
+              Lorem ipsum dolor sit amet consectetur adipisicing.
+            </p>
+            <p class="description">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat.
+            </p>
+            <a href="/logout" class="button">Logout</a>
           </div>
           <div id="icons">
             <a href="#" class="ico"
@@ -92,6 +98,12 @@
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <form action="/upload" merhod="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" />
+        <input type="submit" value="upload" />
+      </form>
     </div>
   </body>
 </html>

@@ -14,7 +14,7 @@ body {
 
 #card {
   width: 370px;
-  height: 435px;
+  height: 70vh;
   border: none;
   border-radius: 15px;
   overflow: hidden;
@@ -47,7 +47,9 @@ body {
 
 .text {
   text-align: center;
-  padding-top: 35px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .text .name {
@@ -61,7 +63,7 @@ body {
 .text .description {
   padding: 0;
   margin: 0;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #icons {
@@ -131,4 +133,12 @@ body {
 .license .ll {
   padding: 0 10px;
   display: inline;
+}
+.button {
+  text-decoration: none;
+  background-color: red;
+  color: #e7e9eb;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 10px;
 }

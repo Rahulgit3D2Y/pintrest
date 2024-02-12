@@ -5,17 +5,27 @@ const postModel = require("./post");
 const localStrategy = require("passport-local");
 const passport = require("passport");
 passport.use(new localStrategy(userModel.authenticate()));
+const upload = require("./multer");
 router.get("/", (req, res) => {
   res.render("index");
 });
-router.get("/login", (req, res) => {
-  res.render("login");
+router.get("/login", (req, res, next) => {
+  res.render("login", { error: req.flash("error") });
 });
-router.get("/profile", isLoggedIn, function (req, res, next) {
-  res.render("profile");
+router.get("/profile", isLoggedIn, async function (req, res, next) {
+  const user = await userModel.findOne({
+    username: req.session.passport.user,
+  });
+  res.render("profile", { user });
 });
 router.get("/feed", (req, res) => {
   res.render("feed");
+});
+router.post("/upload", upload.single("file"), function (req, res) {
+  if (!req.file) {
+    return res.status(404).send("no files were given");
+  }
+  res.send("file uploaded successful");
 });
 router.post("/register", (req, res) => {
   const { username, email, fullName } = req.body;
@@ -32,6 +42,7 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/profile",
     failureRedirect: "/login",
+    failureFlash: true,
   }),
   function (req, res) {}
 );
