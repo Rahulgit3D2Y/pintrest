@@ -101,9 +101,18 @@
     </div>
     <div>
       <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="file" />
+        <input type="text" name="filecaption" placeholder="some caption" />
+        <input type="file" name="file" />
         <input type="submit" value="upload" />
       </form>
+    </div>
+    <div class="container">
+      <% user.posts.forEach(function (post) {%>
+      <img src="/images/uploads/<%= post.image %>" alt="" />
+      <div class="card-body">
+        <h5 class="card-title"><%=post.imageText %></h5>
+      </div>
+      <%}) %>
     </div>
   </body>
 </html>
