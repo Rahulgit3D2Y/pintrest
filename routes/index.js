@@ -21,7 +21,7 @@ router.get("/profile", isLoggedIn, async function (req, res, next) {
 router.get("/feed", (req, res) => {
   res.render("feed");
 });
-router.post("/upload", upload.single("file"), function (req, res) {
+router.post("/upload", upload.single("file"), function (req, res, next) {
   if (!req.file) {
     return res.status(404).send("no files were given");
   }
